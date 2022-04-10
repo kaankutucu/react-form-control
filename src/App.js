@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <h1>Anywhere in your app!</h1>
       <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={{ email: '', password: '' , gender: '' , hobies: [], country:[] }}
           validate={values => {
             const errors = {};
             if (!values.email) {
@@ -53,9 +53,50 @@ function App() {
                   value={values.password}
               />
               {errors.password && touched.password && errors.password}
+
+                <label htmlFor="gender">Gender</label>
+
+                <span>Male</span>
+                <input
+                    type="radio"
+                    name="gender"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.male}
+                />
+
+                <span>Famale</span>
+                <input
+                    type="radio"
+                    name="gender"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.female}
+                />
+
+
+                <br/><br/><br/>
+
+
               <button type="submit" disabled={isSubmitting}>
                 Submit
               </button>
+
+                {JSON.stringify(values)}
+
+                <br/><br/><br/>
+
+                <input type="checkbox" name="hobies" value="football" onChange={handleChange}/> Football
+                <input type="checkbox" name="hobies" value="basketball" onChange={handleChange} /> Basketball
+                <input type="checkbox" name="hobies" value="volleyball" onChange={handleChange}/> Volleyball
+
+                <br/><br/><br/>
+
+                <select name="country" id="" onChange={handleChange} value={values.country}>
+                    <option value="tr">TR</option>
+                    <option value="en">En</option>
+                    <option value="us">Usa</option>
+                </select>
             </form>
         )}
       </Formik>
